@@ -31,7 +31,7 @@ router.post('/signup', Controller.Signup);
  * @returns {Error}  default - Unexpected error
  */
 router.post('/login', Controller.Login);
-//router.get('/logout', Controller.logoutUser);
+router.get('/logout', Controller.Logout);
 
 /*
 *  TODO: AUTHORIZATION MIDDLEWARE

@@ -1,5 +1,6 @@
 const Service = require('../Services/Database/Authentication');
 const JwtUtil = require('../Utils/JsonWebToken/JWTUtils');
+const LanguageUtils = require('../Utils/Language/LangUtils');
 
 const cookieConfig = {
     httpOnly: true
@@ -96,5 +97,13 @@ module.exports = {
             let response = {status: 500, content: {success:false, message:err.message}};
             return res.status(response.status).json(response.content)
         })
+    },
+    Logout : (req, res, next) => {
+        let langParam = "TR"
+        if (req.user && req.user.Language)
+            langParam = req.user.Language.Shortcut.toUpperCase()
+
+        let response = {status: 200, content: {success:true, message:LanguageUtils.info_messages["003"][langParam]}};
+        return res.status(response.status).clearCookie('_sid').json(response.content)
     }
 };
