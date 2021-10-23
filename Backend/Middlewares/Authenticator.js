@@ -9,7 +9,7 @@ const models = require('../models');
 const User = models.User;*/
 
 /*const options = {
-    jwtFromRequest: jwtModule.extractJwtFromRequest,
+    jwtFromRequest: jwtModule.ExtractJwtFromRequest,
     secretOrKey: process.env.JWT_ENCRYPTION
 };*/
 
@@ -45,7 +45,7 @@ module.exports = {
         return passport.initialize();
     },
     authenticate: function (req, res, next) {
-        let token = jwtModule.extractJwtFromRequest(req) || null;
+        let token = jwtModule.ExtractJwtFromRequest(req) || null;
         //let minutesUntilExpiration = null;
         let payload = null;
 

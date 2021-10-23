@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const authenticator = require('../Middlewares/Authenticator');
 const Controller = require('../Controllers/HelloController');
 
 /**
@@ -9,6 +9,6 @@ const Controller = require('../Controllers/HelloController');
  * @returns {object} 200 - {success:true, message:"Hello World!"}
  * @returns {Error}  default - Unexpected error
  */
-router.get('/', Controller.helloWorld);
+router.get('/', authenticator.authenticate, Controller.helloWorld);
 
 module.exports = router;

@@ -8,7 +8,7 @@ const User = models.User;
 module.exports = {
     getOptions: () => {
         return {
-            jwtFromRequest: jwtModule.extractJwtFromRequest,
+            jwtFromRequest: jwtModule.ExtractJwtFromRequest,
             secretOrKey: process.env.JWT_ENCRYPTION
         };
     },
@@ -16,17 +16,29 @@ module.exports = {
      return new Strategy(options, (payload, done) => {
             User.findOne({
                 where : models.sequelize.and(
-                    {id: payload.id},
+                    {Id: payload.Id},
                     {status: 1},
-                )
+                ),
+                include: [
+                    {
+                        model: models.Role,
+                        as: 'Role',
+                        required: true,
+                    },
+                    {
+                        model: models.Language,
+                        as: 'Language',
+                        required: true,
+                    }
+                ]
             }).then(user => {
                 if(user){
                     return done(null, {
-                        id: user.id,
-                        name: user.username,
-                        email: user.email,
-                        role: user.roles,
-                        preferredLanguage: user.preferredLanguage
+                        Id: user.Id,
+                        Username: user.Username,
+                        Email: user.Email,
+                        Role: user.Role,
+                        Language: user.Language
                     });
                 }
                 return done("Authentication Required", false);
