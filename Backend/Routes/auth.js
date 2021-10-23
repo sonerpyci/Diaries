@@ -4,8 +4,33 @@ const authenticator = require('../Middlewares/Authenticator');
 
 let tableName = Controller.getTableName();
 
-router.post('/signup', Controller.signup);
-//router.post('/login', Controller.loginUser);
+/**
+ * Signup User Route.
+ * @route Post auth/signup
+ * @group Auth - Signup Endpoint
+ * @param {string} FirstName.body.required - user's FirstName.
+ * @param {string} MiddleName.body - user's MiddleName if exists.
+ * @param {string} LastName.body.required - user's LastName.
+ * @param {string} Username.body.required - user's Username.
+ * @param {string} Password.body.required - user's Password.
+ * @param {string} Email.body.required - user's Email.- eg: john@doe.com
+ * @param {string} Phone.body.required - user's Phone.
+ * @param {string} District.body - user's District.
+ * @param {string} Province.body - user's Province.
+ * @param {string} Country.body - user's Country.
+ * @returns {object} 200 - {success:true, user:"{user}"}
+ * @returns {Error}  default - Unexpected error
+ */
+router.post('/signup', Controller.Signup);
+
+/**
+ * Login User Route.
+ * @route Post auth/login
+ * @group Auth - Login Endpoint
+ * @returns {object} 200 - {success:true, token:"{token}"}
+ * @returns {Error}  default - Unexpected error
+ */
+router.post('/login', Controller.Login);
 //router.get('/logout', Controller.logoutUser);
 
 /*
