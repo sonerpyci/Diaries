@@ -119,7 +119,7 @@ module.exports = (sequelize, DataTypes) => {
         hooks: {
             beforeCreate: async (user) => {
                 try {
-                    user.password = await passwordModule.scrypt(user.password);
+                    user.Password = await passwordModule.scrypt(user.Password);
                 } catch (err) {
                     console.log(err.message);
                     throw {message: 'Encryption Error.'};
