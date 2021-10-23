@@ -1,0 +1,38 @@
+{
+  "name": "diaries-backend",
+  "version": "0.0.1",
+  "description": "A Backend Project to Diaries",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonerpyci/Diaries"
+  },
+  "keywords": [
+    "backend",
+    "api",
+    "diaries"
+  ],
+  "author": "Soner Paycı, Umay Ece Köprücü",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonerpyci/Diaries/issues"
+  },
+  "homepage": "https://github.com/sonerpyci/Diaries#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-swagger-generator": "^1.1.17",
+    "jsonwebtoken": "^8.5.1",
+    "libphonenumber-js": "^1.8.5",
+    "mysql2": "^2.2.5",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {}
+}

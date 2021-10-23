@@ -1,0 +1,21 @@
+{
+  "apps": [{
+    "name": "stereotypeCatcher",
+    "script": "server.js",
+    "exec_mode": "cluster",
+    "listen_timeout" : 100,
+    "max_memory_restart": "500M",
+    "exp_backoff_restart_delay": 10,
+    "watch": true,
+    "ignore_watch" : ["node_modules", "uploads"],
+    "watch_options": {
+      "usePolling": true
+    },
+    "instances": 1,
+    "wait_ready": true,
+    "restart_delay": 1000,
+    "node_args": [
+      "--max_old_space_size=2048"
+    ]
+  }]
+}
