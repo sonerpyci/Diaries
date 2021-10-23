@@ -1,9 +1,11 @@
 const CONFIG = require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const models = require('./Models');
 const swaggerOpts = require('./Utils/Swagger/swaggerUtils').getOptions(__dirname);
+const authenticator = require('./Middlewares/Authenticator');
 
 const app = express();
 const expressSwagger = require('express-swagger-generator')(app);
@@ -11,6 +13,8 @@ expressSwagger(swaggerOpts);
 
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false }));
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(authenticator.initialize())
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Credentials', true);
@@ -31,12 +35,10 @@ app.use(fileUpload({
     createParentPath : true
 }));
 
-
 app.use("/v1/hello", require('./Routes/hello'));
 app.use("/v1/auth", require('./Routes/auth'));
 
 const server =  require('http').Server(app);
-
 
 models.sequelize.authenticate()
     .then(() => {

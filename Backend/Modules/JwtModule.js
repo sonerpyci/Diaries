@@ -1,9 +1,9 @@
 module.exports = {
-    extractJwtFromRequest : (req) => {
+    ExtractJwtFromRequest : (req) => {
         let token = null;
         if (req && (req.cookies || req.headers)){
-            if (req.cookies['_uid']) {
-                token = req.cookies['_uid'];
+            if (req.cookies['_sid']) {
+                token = req.cookies['_sid'];
             } else if (req.headers.authorization) {
                 let parts = req.headers.authorization.split(' ');
                 if (parts.length === 2) {
